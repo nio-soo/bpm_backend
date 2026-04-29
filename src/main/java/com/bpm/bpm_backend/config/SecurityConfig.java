@@ -36,6 +36,7 @@ public class SecurityConfig {
                 // SOLO DESARROLLO LOCAL — nunca exponer en producción
                 .requestMatchers("/api/admin/dev/**").permitAll()
                 // Rutas públicas para pruebas de examen
+                .requestMatchers("/api/ai/**").permitAll()
                 .requestMatchers("/api/tasks/**").permitAll()
                 .requestMatchers("/api/dept/forms/node/**").permitAll()
                 .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/admin/departments/*").authenticated()
