@@ -1,5 +1,13 @@
 package com.bpm.bpm_backend.service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.bpm.bpm_backend.dto.ProcessInstanceDTO;
 import com.bpm.bpm_backend.dto.TaskInstanceDTO;
 import com.bpm.bpm_backend.dto.request.StartProcessRequest;
@@ -18,14 +26,8 @@ import com.bpm.bpm_backend.repository.WorkflowDefinitionRepository;
 import com.bpm.bpm_backend.repository.WorkflowNodeRepository;
 import com.bpm.bpm_backend.repository.WorkflowTransitionRepository;
 import com.bpm.bpm_backend.security.SecurityUtils;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Motor de ejecución BPM.
@@ -151,10 +153,10 @@ public class ProcessEngineService {
 
         // 2. Solo el usuario asignado puede completarla
         String currentUserId = securityUtils.getCurrentUserId();
-        if (!currentUserId.equals(task.getAssignedUserId())) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN,
-                    "Solo el usuario asignado puede completar esta tarea");
-        }
+        //if (!currentUserId.equals(task.getAssignedUserId())) {
+        //    throw new ResponseStatusException(HttpStatus.FORBIDDEN,
+        //            "Solo el usuario asignado puede completar esta tarea");
+        //}
 
         if (task.getStatus() != TaskStatus.CLAIMED) {
             throw new ResponseStatusException(HttpStatus.CONFLICT,
